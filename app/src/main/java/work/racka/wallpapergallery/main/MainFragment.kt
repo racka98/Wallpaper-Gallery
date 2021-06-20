@@ -1,4 +1,4 @@
-package work.racka.wallpapergallery.ui.main
+package work.racka.wallpapergallery.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

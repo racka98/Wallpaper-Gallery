@@ -16,6 +16,9 @@ buildscript {
         classpath "com.android.tools.build:gradle:4.2.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
+        //Navigation Safe-args
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
