@@ -15,6 +15,10 @@ class MainViewModel : ViewModel() {
     val wallpapers: LiveData<List<WallpaperProperty>>
         get() = _wallpapers
 
+    init {
+        getWallpaperProperties()
+    }
+
     private fun getWallpaperProperties() {
         viewModelScope.launch {
             try {
