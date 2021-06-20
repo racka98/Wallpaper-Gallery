@@ -24,7 +24,7 @@ private val retrofit = Retrofit.Builder()
 
 //Interface to retrieve the required JSON response
 interface WallpaperApiService {
-    @GET("wallpapers")
+    @GET("wallpapers.json")
     suspend fun getWallpapers(): List<WallpaperProperty>
 }
 
