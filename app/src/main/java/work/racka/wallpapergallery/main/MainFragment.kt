@@ -7,26 +7,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import work.racka.wallpapergallery.R
+import work.racka.wallpapergallery.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(this).get(MainViewModel::class.java)
     }
-
-    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        savedInstanceState: Bundle?): View {
+
+        val binding = MainFragmentBinding.inflate(inflater)
+
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.lifecycleOwner = this
+
+        // Giving the binding access to the OverviewViewModel
+        binding.viewModel = viewModel
+
+        // Sets the adapter of the photosGrid RecyclerView
+        binding.wallpaperGrid.adapter = WallpaperGridAdapter()
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

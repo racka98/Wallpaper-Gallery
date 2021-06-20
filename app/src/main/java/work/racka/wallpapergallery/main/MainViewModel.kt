@@ -24,7 +24,7 @@ class MainViewModel : ViewModel() {
             try {
                 _wallpapers.value = WallpaperApi.wallpaperService.getWallpapers()
             } catch (e: Exception) {
-                Log.e("MainViewModel", "Possibly no internet connection")
+                Log.e("MainViewModel", "Possibly no internet connection", e)
             }
         }
     }
