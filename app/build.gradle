@@ -66,4 +66,7 @@ dependencies {
 
     //RecyclerView
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
+
+    //CardView
+    //implementation "androidx.cardview:cardview:$version_cardview"
 }

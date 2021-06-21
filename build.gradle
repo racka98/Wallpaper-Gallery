@@ -7,6 +7,7 @@ buildscript {
         version_navigation = "2.3.5"
         version_retrofit = "2.9.0"
         version_recyclerview = "1.2.1"
+        version_cardview = "1.0.0"
     }
     repositories {
         google()
