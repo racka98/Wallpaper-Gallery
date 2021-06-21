@@ -2,8 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
     <data>
+
         <variable
             name="viewModel"
             type="work.racka.wallpapergallery.main.MainViewModel" />
@@ -19,6 +20,7 @@
             android:id="@+id/wallpaper_grid"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:clipToPadding="false"
             android:padding="4dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -28,9 +30,31 @@
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
             app:wallpaperList="@{viewModel.wallpapers}"
-            android:clipToPadding="false"
             tools:itemCount="10"
             tools:listitem="@layout/wallpaper_group" />
+
+        <ImageView
+            android:id="@+id/network_error_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:networkIcon="@{viewModel.status}" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:progressVisibility="@{viewModel.status}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
