@@ -9,5 +9,14 @@
         android:id="@+id/mainFragment"
         android:name="work.racka.wallpapergallery.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="work.racka.wallpapergallery.details.DetailsFragment"
+        android:label="details_fragment"
+        tools:layout="@layout/details_fragment" />
 </navigation>
