@@ -15,6 +15,8 @@ enum class WallpaperApiStatus {
     DONE
 }
 
+const val TAG = "MainViewModel"
+
 class MainViewModel : ViewModel() {
 
     private val _wallpapers = MutableLiveData<List<WallpaperProperty>>()
@@ -23,6 +25,10 @@ class MainViewModel : ViewModel() {
 
     private val _status = MutableLiveData<WallpaperApiStatus>()
     val status: LiveData<WallpaperApiStatus> = _status
+
+    private val _navigateToDetailsFragment = MutableLiveData<WallpaperProperty?>()
+    val navigateToDetailsFragment: LiveData<WallpaperProperty?>
+        get() = _navigateToDetailsFragment
 
     init {
         getWallpaperProperties()
@@ -33,11 +39,21 @@ class MainViewModel : ViewModel() {
             try {
                 _status.value = WallpaperApiStatus.LOADING
                 _wallpapers.value = WallpaperApi.wallpaperService.getWallpapers()
+                Log.i(TAG, "Accessed wallpaper service API")
                 _status.value = WallpaperApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = WallpaperApiStatus.ERROR
                 Log.e("MainViewModel", "Possibly no internet connection", e)
             }
         }
+    }
+
+    fun displayWallpaperDetails(wallpaperProperty: WallpaperProperty) {
+        _navigateToDetailsFragment.value = wallpaperProperty
+        Log.i(TAG, "Displayed wallpapers")
+    }
+
+    fun displayWallpaperDetailsCompleted() {
+        _navigateToDetailsFragment.value = null
     }
 }

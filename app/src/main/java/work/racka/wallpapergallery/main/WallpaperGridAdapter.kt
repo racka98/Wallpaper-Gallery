@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import work.racka.wallpapergallery.databinding.WallpaperGroupBinding
 import work.racka.wallpapergallery.network.WallpaperProperty
 
-class WallpaperGridAdapter: ListAdapter<WallpaperProperty, WallpaperGridAdapter.ViewHolder>(DiffCallback) {
+class WallpaperGridAdapter(private val onClickListener: OnClickListener): ListAdapter<WallpaperProperty, WallpaperGridAdapter.ViewHolder>(DiffCallback) {
 
     class ViewHolder(private var binding: WallpaperGroupBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(wallpaperProperty: WallpaperProperty) {
@@ -42,6 +42,13 @@ class WallpaperGridAdapter: ListAdapter<WallpaperProperty, WallpaperGridAdapter.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val wallpaperProperty = getItem(position)
-        holder.bind(wallpaperProperty)
+        //holder.bind(wallpaperProperty)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(wallpaperProperty)
+        }
+    }
+
+    class OnClickListener(val clickListener: (wallpaperProperty: WallpaperProperty) -> Unit) {
+        fun onClick(wallpaperProperty: WallpaperProperty) = clickListener(wallpaperProperty)
     }
 }

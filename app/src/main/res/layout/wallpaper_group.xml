@@ -54,7 +54,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/wallpaper_image_description"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{wallpaper.url}"
+                app:imageUrl="@{wallpaper.thumbnail}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView

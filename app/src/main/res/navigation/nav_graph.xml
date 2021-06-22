@@ -18,5 +18,9 @@
         android:id="@+id/detailsFragment"
         android:name="work.racka.wallpapergallery.details.DetailsFragment"
         android:label="details_fragment"
-        tools:layout="@layout/details_fragment" />
+        tools:layout="@layout/details_fragment" >
+        <argument
+            android:name="wallpaperProperty"
+            app:argType="work.racka.wallpapergallery.network.WallpaperProperty" />
+    </fragment>
 </navigation>
