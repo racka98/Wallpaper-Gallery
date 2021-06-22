@@ -42,10 +42,10 @@ class WallpaperGridAdapter(private val onClickListener: OnClickListener): ListAd
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val wallpaperProperty = getItem(position)
-        //holder.bind(wallpaperProperty)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(wallpaperProperty)
         }
+        holder.bind(wallpaperProperty)
     }
 
     class OnClickListener(val clickListener: (wallpaperProperty: WallpaperProperty) -> Unit) {

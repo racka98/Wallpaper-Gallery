@@ -33,8 +33,8 @@ class MainFragment : Fragment() {
         //Add click listener to this adapter
         //binding.wallpaperGrid.adapter = WallpaperGridAdapter()
         binding.wallpaperGrid.adapter = WallpaperGridAdapter(
-            WallpaperGridAdapter.OnClickListener {
-                viewModel.displayWallpaperDetails(it)
+            WallpaperGridAdapter.OnClickListener { wallpaperProperty ->
+                viewModel.displayWallpaperDetails(wallpaperProperty)
             }
         )
 

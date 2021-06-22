@@ -33,70 +33,86 @@
                 app:imageUrl="@{viewModel.selectedWallpaperProperty.url}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
-            <TextView
-                android:id="@+id/details_name"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:textAlignment="viewStart"
-                android:text="@{viewModel.selectedWallpaperProperty.name}"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="20sp"
-                tools:text="Ben Pro Max Caterpillar Dude" />
+                android:layout_margin="8dp"
+                android:elevation="2dp"
+                app:cardCornerRadius="10dp">
 
-            <TextView
-                android:id="@+id/details_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:textAlignment="viewStart"
-                android:text="@{viewModel.selectedWallpaperProperty.author}"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="20sp"
-                tools:text="Author; Ben Pro Max Caterpillar Dude" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/details_dimensions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:textAlignment="viewStart"
-                android:text="@{viewModel.selectedWallpaperProperty.dimensions}"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="20sp"
-                tools:text="Author; Ben Pro Max Caterpillar Dude" />
+                    <TextView
+                        android:id="@+id/details_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewModel.selectedWallpaperProperty.name}"
+                        android:textAlignment="viewStart"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="20sp"
+                        tools:text="Ben Pro Max Caterpillar Dude" />
 
-            <TextView
-                android:id="@+id/details_collection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:textAlignment="viewStart"
-                android:text="@{viewModel.selectedWallpaperProperty.collections}"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="20sp"
-                tools:text="Author; Ben Pro Max Caterpillar Dude" />
+                    <TextView
+                        android:id="@+id/details_author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewModel.selectedWallpaperProperty.author}"
+                        android:textAlignment="viewStart"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="20sp"
+                        tools:text="Author; Ben Pro Max Caterpillar Dude" />
 
-            <TextView
-                android:id="@+id/details_downloadable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:textAlignment="viewStart"
-                android:text="@{String.valueOf(viewModel.selectedWallpaperProperty.downloadable)}"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="20sp"
-                tools:text="Author; Ben Pro Max Caterpillar Dude" />
+                    <TextView
+                        android:id="@+id/details_dimensions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewModel.selectedWallpaperProperty.dimensions}"
+                        android:textAlignment="viewStart"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="20sp"
+                        tools:text="Author; Ben Pro Max Caterpillar Dude" />
+
+                    <TextView
+                        android:id="@+id/details_collection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewModel.selectedWallpaperProperty.collections}"
+                        android:textAlignment="viewStart"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="20sp"
+                        tools:text="Author; Ben Pro Max Caterpillar Dude" />
+
+                    <TextView
+                        android:id="@+id/details_downloadable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@{String.valueOf(viewModel.selectedWallpaperProperty.downloadable)}"
+                        android:textAlignment="viewStart"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="20sp"
+                        tools:text="Author; Ben Pro Max Caterpillar Dude" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
