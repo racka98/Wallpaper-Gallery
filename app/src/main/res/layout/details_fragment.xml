@@ -27,9 +27,10 @@
             <ImageView
                 android:id="@+id/details_wallpaper_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="640dp"
                 android:contentDescription="@string/wallpaper_image_description"
-                android:scaleType="center"
+                android:scaleType="centerCrop"
+                android:transitionName="wallpaperImage"
                 app:imageUrl="@{viewModel.selectedWallpaperProperty.url}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 

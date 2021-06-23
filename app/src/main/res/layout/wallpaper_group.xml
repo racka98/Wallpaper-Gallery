@@ -32,7 +32,8 @@
 
     <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/wallpaper_group_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -42,16 +43,17 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/wallpaper_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:adjustViewBounds="true"
+                android:transitionName="wallpaperImage"
                 android:contentDescription="@string/wallpaper_image_description"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{wallpaper.thumbnail}"
@@ -71,7 +73,9 @@
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="18sp"
                 tools:text="Very very very long text here, so long like omg" />
-        </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.google.android.material.card.MaterialCardView>
+
 </layout>
