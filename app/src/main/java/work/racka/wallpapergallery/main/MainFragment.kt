@@ -2,10 +2,8 @@ package work.racka.wallpapergallery.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import work.racka.wallpapergallery.R
@@ -22,6 +20,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?): View {
 
         val binding = MainFragmentBinding.inflate(inflater)
+        binding.toolbar.inflateMenu(R.menu.main_menu)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this

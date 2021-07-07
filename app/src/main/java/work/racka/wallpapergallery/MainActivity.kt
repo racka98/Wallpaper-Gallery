@@ -2,6 +2,8 @@ package work.racka.wallpapergallery
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.widget.Toolbar
 import work.racka.wallpapergallery.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -14,5 +16,12 @@ class MainActivity : AppCompatActivity() {
 //                .replace(R.id.container, MainFragment.newInstance())
 //                .commitNow()
 //        }
+//        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.main_menu, menu)
+//        return true
+//    }
 }
