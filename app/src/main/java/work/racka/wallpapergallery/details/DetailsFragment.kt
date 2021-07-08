@@ -23,7 +23,7 @@ class DetailsFragment : Fragment() {
         //Using navigation bar insets to prevent content being cut off at the navigation bar
         ViewCompat.setOnApplyWindowInsetsListener(binding.detailsContainer) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            // Apply the insets as padding to the view. Here the system is setting
+            // Apply the insets as margin to the view. Here the system is setting
             // only the bottom, left, and right dimensions, but apply whichever insets are
             // appropriate to your layout. You can also update the view padding
             // if that's more appropriate.

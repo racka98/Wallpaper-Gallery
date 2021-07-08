@@ -49,15 +49,15 @@ class MainFragment : Fragment() {
         })
 
         //Using System bar insets to fix custom toolbar overlapping to the status bar
-        ViewCompat.setOnApplyWindowInsetsListener(binding.mainFragmentContainer) { view, windowInsets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.toolbar) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            // Apply the insets as padding to the view. Here the system is setting
+            // Apply the insets as a margin to the view. Here the system is setting
             // only the bottom, left, and right dimensions, but apply whichever insets are
             // appropriate to your layout. You can also update the view padding
             // if that's more appropriate.
-            view.updatePadding(
-                top = insets.top
-            )
+            view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                updateMargins(top = insets.top)
+            }
 
             // Return CONSUMED if you don't want want the window insets to keep being
             // passed down to descendant views.

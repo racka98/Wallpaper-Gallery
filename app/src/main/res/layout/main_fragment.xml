@@ -16,47 +16,46 @@
         android:layout_height="match_parent"
         tools:context=".main.MainFragment">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/wallpaper_grid"
-            app:layout_constraintStart_toEndOf="@+id/wallpaper_grid"
-            app:layout_constraintTop_toTopOf="parent"
-            app:liftOnScroll="true">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
+            android:layout_height="match_parent">
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_margin="5dp"
-                android:background="@drawable/appbar_background_border"
-                android:elevation="2dp"
-                app:title="Wallpapers"
-                app:titleTextColor="?android:textColorSecondary"
-                android:theme="?attr/actionBarTheme"
-                app:layout_scrollFlags="scroll|enterAlways|snap" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@android:color/transparent"
+                app:liftOnScroll="true">
 
-        </com.google.android.material.appbar.AppBarLayout>
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/appbar_background_border"
+                    android:elevation="2dp"
+                    app:title="Wallpapers"
+                    app:titleTextColor="?android:textColorSecondary"
+                    android:theme="?attr/actionBarTheme"
+                    app:layout_scrollFlags="scroll|enterAlways|snap" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/wallpaper_grid"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:padding="4dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:spanCount="2"
-            app:wallpaperList="@{viewModel.wallpapers}"
-            tools:itemCount="10"
-            tools:listitem="@layout/wallpaper_group" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/wallpaper_grid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:padding="4dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                app:wallpaperList="@{viewModel.wallpapers}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:itemCount="10"
+                tools:listitem="@layout/wallpaper_group" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <ImageView
             android:id="@+id/network_error_image"
