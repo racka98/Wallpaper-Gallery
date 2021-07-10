@@ -1,22 +1,24 @@
-package work.racka.wallpapergallery.details
+package work.racka.wallpapergallery.ui
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import work.racka.wallpapergallery.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import work.racka.wallpapergallery.databinding.DetailsFragmentBinding
+import work.racka.wallpapergallery.viewmodels.DetailsViewModel
+import work.racka.wallpapergallery.viewmodels.DetailsViewModelFactory
 
 class DetailsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?
+    ): View {
         val application = requireNotNull(activity).application
         val binding = DetailsFragmentBinding.inflate(inflater)
 
@@ -38,9 +40,9 @@ class DetailsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         //Arguments from bundle
-        val wallpaperProperty = DetailsFragmentArgs.fromBundle(requireArguments()).wallpaperProperty
+        val wallpaper = DetailsFragmentArgs.fromBundle(requireArguments()).wallpaper
 
-        val viewModelFactory = DetailsViewModelFactory(wallpaperProperty, application)
+        val viewModelFactory = DetailsViewModelFactory(wallpaper, application)
 
         binding.viewModel = ViewModelProvider(
             this,

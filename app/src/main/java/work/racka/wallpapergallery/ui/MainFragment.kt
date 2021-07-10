@@ -1,20 +1,30 @@
-package work.racka.wallpapergallery.main
+package work.racka.wallpapergallery.ui
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.view.*
-import androidx.core.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updateMargins
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.snackbar.Snackbar
 import work.racka.wallpapergallery.R
 import work.racka.wallpapergallery.databinding.MainFragmentBinding
+import work.racka.wallpapergallery.viewmodels.MainViewModel
+import work.racka.wallpapergallery.viewmodels.MainViewModelFactory
+import work.racka.wallpapergallery.viewmodels.WallpaperApiStatus
 
 class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
+        val application = requireNotNull(activity).application
+        val viewModelFactory = MainViewModelFactory(application)
+        ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -40,11 +50,34 @@ class MainFragment : Fragment() {
         )
 
         //Observe navigateToDetailsFragment from MainViewModel to trigger navigation
-        viewModel.navigateToDetailsFragment.observe(viewLifecycleOwner, Observer { wallpaperProperty ->
+        viewModel.navigateToDetailsFragment.observe(viewLifecycleOwner) { wallpaperProperty ->
             wallpaperProperty?.let {
                 this.findNavController().navigate(
-                    MainFragmentDirections.actionMainFragmentToDetailsFragment(it))
+                    MainFragmentDirections.actionMainFragmentToDetailsFragment(it)
+                )
                 viewModel.displayWallpaperDetailsCompleted()
+            }
+        }
+
+        //Observe the network call status and show a snackbar for the appropriate status
+        viewModel.status.observe(viewLifecycleOwner, Observer { status ->
+            val responseText: String = when (status) {
+                WallpaperApiStatus.LOADING -> "Fetching Wallpapers..."
+                WallpaperApiStatus.ERROR -> "No Internet Connection!"
+                else -> "Latest wallpapers fetched!"
+            }
+            //Making the snackbar
+            status?.let {
+                val snackbar = Snackbar.make(
+                    binding.root,
+                    responseText,
+                    Snackbar.LENGTH_SHORT
+                )
+                snackbar.apply {
+                    animationMode = Snackbar.ANIMATION_MODE_SLIDE
+                    show()
+                }
+                viewModel.statusCheckCompleted()
             }
         })
 

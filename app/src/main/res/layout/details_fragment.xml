@@ -3,13 +3,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".details.DetailsFragment">
+    tools:context=".ui.DetailsFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="work.racka.wallpapergallery.details.DetailsViewModel" />
+            type="work.racka.wallpapergallery.viewmodels.DetailsViewModel" />
     </data>
 
     <ScrollView
@@ -31,7 +31,7 @@
                 android:contentDescription="@string/wallpaper_image_description"
                 android:scaleType="centerCrop"
                 android:transitionName="wallpaperImage"
-                app:imageUrl="@{viewModel.selectedWallpaperProperty.url}"
+                app:imageUrl="@{viewModel.selectedWallpaper.url}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <androidx.cardview.widget.CardView
@@ -54,7 +54,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:text="@{viewModel.selectedWallpaperProperty.name}"
+                        android:text="@{viewModel.selectedWallpaper.name}"
                         android:textAlignment="viewStart"
                         android:textColor="?android:attr/textColorSecondary"
                         android:textSize="20sp"
@@ -67,7 +67,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
-                        android:text="@{viewModel.selectedWallpaperProperty.author}"
+                        android:text="@{viewModel.selectedWallpaper.author}"
                         android:textAlignment="viewStart"
                         android:textColor="?android:attr/textColorSecondary"
                         android:textSize="20sp"
@@ -80,7 +80,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
-                        android:text="@{viewModel.selectedWallpaperProperty.dimensions}"
+                        android:text="@{viewModel.selectedWallpaper.dimensions}"
                         android:textAlignment="viewStart"
                         android:textColor="?android:attr/textColorSecondary"
                         android:textSize="20sp"
@@ -93,7 +93,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
-                        android:text="@{viewModel.selectedWallpaperProperty.collections}"
+                        android:text="@{viewModel.selectedWallpaper.collections}"
                         android:textAlignment="viewStart"
                         android:textColor="?android:attr/textColorSecondary"
                         android:textSize="20sp"
@@ -107,7 +107,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="@{String.valueOf(viewModel.selectedWallpaperProperty.downloadable)}"
+                        android:text="@{String.valueOf(viewModel.selectedWallpaper.downloadable)}"
                         android:textAlignment="viewStart"
                         android:textColor="?android:attr/textColorSecondary"
                         android:textSize="20sp"

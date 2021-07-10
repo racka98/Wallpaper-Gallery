@@ -1,21 +1,18 @@
-package work.racka.wallpapergallery
+package work.racka.wallpapergallery.util
 
 import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.core.net.toUri
-import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import work.racka.wallpapergallery.main.MainFragment
-import work.racka.wallpapergallery.main.WallpaperApiStatus
-import work.racka.wallpapergallery.main.WallpaperGridAdapter
-import work.racka.wallpapergallery.network.WallpaperProperty
+import work.racka.wallpapergallery.R
+import work.racka.wallpapergallery.domain.Wallpaper
+import work.racka.wallpapergallery.ui.WallpaperGridAdapter
+import work.racka.wallpapergallery.viewmodels.WallpaperApiStatus
 
 private const val TAG = "BindingAdapters"
 
@@ -43,22 +40,25 @@ fun bindImage(image: ImageView, imgUrl: String?) {
 }
 
 @BindingAdapter("wallpaperList")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<WallpaperProperty>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Wallpaper>?) {
     val adapter = recyclerView.adapter as WallpaperGridAdapter
     adapter.submitList(data)
 }
 
+/**
 //Binding adapter for imageView to show No Internet icon when there's no internet
+//Use Snackbar instead of this inside the MainFragment
 @BindingAdapter("networkIcon")
 fun bindNetworkIcon(networkImageView: ImageView, status: WallpaperApiStatus?) {
-    when (status) {
-        WallpaperApiStatus.ERROR -> {
-            networkImageView.visibility = View.VISIBLE
-            networkImageView.setImageResource(R.drawable.ic_connection_error)
-        }
-        else -> networkImageView.visibility = View.GONE
-    }
+when (status) {
+WallpaperApiStatus.ERROR -> {
+networkImageView.visibility = View.VISIBLE
+networkImageView.setImageResource(R.drawable.ic_connection_error)
 }
+else -> networkImageView.visibility = View.GONE
+}
+}
+ */
 
 //Binding adapter for ProgressBar when loading images
 @BindingAdapter("progressVisibility")

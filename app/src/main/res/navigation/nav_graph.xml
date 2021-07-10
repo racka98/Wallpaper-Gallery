@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="work.racka.wallpapergallery.main.MainFragment"
+        android:name="work.racka.wallpapergallery.ui.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" >
         <action
@@ -16,11 +16,11 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="work.racka.wallpapergallery.details.DetailsFragment"
+        android:name="work.racka.wallpapergallery.ui.DetailsFragment"
         android:label="details_fragment"
         tools:layout="@layout/details_fragment" >
         <argument
-            android:name="wallpaperProperty"
-            app:argType="work.racka.wallpapergallery.network.WallpaperProperty" />
+            android:name="wallpaper"
+            app:argType="work.racka.wallpapergallery.domain.Wallpaper" />
     </fragment>
 </navigation>

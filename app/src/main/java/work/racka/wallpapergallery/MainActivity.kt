@@ -1,17 +1,8 @@
 package work.racka.wallpapergallery
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.ViewGroup
-import android.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.ViewCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
-import androidx.fragment.app.FragmentContainerView
-import work.racka.wallpapergallery.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

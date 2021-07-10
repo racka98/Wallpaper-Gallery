@@ -7,7 +7,7 @@
 
         <variable
             name="wallpaper"
-            type="work.racka.wallpapergallery.network.WallpaperProperty" />
+            type="work.racka.wallpapergallery.domain.Wallpaper" />
     </data>
 
     <!--    <androidx.constraintlayout.widget.ConstraintLayout-->

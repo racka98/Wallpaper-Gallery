@@ -7,18 +7,19 @@
 
         <variable
             name="viewModel"
-            type="work.racka.wallpapergallery.main.MainViewModel" />
+            type="work.racka.wallpapergallery.viewmodels.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".main.MainFragment">
+        tools:context=".ui.MainFragment">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
@@ -51,23 +52,24 @@
                 android:padding="4dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
-                app:wallpaperList="@{viewModel.wallpapers}"
+                app:wallpaperList="@{viewModel.wallpaperList}"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:itemCount="10"
                 tools:listitem="@layout/wallpaper_group" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <ImageView
-            android:id="@+id/network_error_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:networkIcon="@{viewModel.status}" />
+        <!--        Use SnackBar Instead-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/network_error_image"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.5"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:networkIcon="@{viewModel.status}" />-->
 
         <ProgressBar
             android:layout_width="wrap_content"
