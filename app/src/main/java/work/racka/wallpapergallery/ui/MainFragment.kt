@@ -1,9 +1,9 @@
 package work.racka.wallpapergallery.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import work.racka.wallpapergallery.R
 import work.racka.wallpapergallery.databinding.MainFragmentBinding
+import work.racka.wallpapergallery.util.onQueryTextChanged
 import work.racka.wallpapergallery.viewmodels.MainViewModel
 import work.racka.wallpapergallery.viewmodels.MainViewModelFactory
 import work.racka.wallpapergallery.viewmodels.WallpaperApiStatus
@@ -27,12 +28,16 @@ class MainFragment : Fragment() {
         ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
 
+    private lateinit var binding: MainFragmentBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+        savedInstanceState: Bundle?
+    ): View {
 
-        val binding = MainFragmentBinding.inflate(inflater)
+        binding = MainFragmentBinding.inflate(inflater)
         binding.toolbar.inflateMenu(R.menu.main_menu)
+
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
@@ -78,6 +83,7 @@ class MainFragment : Fragment() {
                     show()
                 }
                 viewModel.statusCheckCompleted()
+                Log.i("MainFragment", "Snackbar called")
             }
         })
 
@@ -97,9 +103,44 @@ class MainFragment : Fragment() {
             WindowInsetsCompat.CONSUMED
         }
 
-
+        setHasOptionsMenu(true)
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        val search = menu.findItem(R.id.action_search)
+        val searchView = search.actionView as SearchView
+        Log.i("MainFragment", "onCreateOptionMenu called")
+        //searchView.isSubmitButtonEnabled = true
+        searchView.onQueryTextChanged {
+            Log.i("MainFragment", "onQueryTextChanged accessed")
+            viewModel.searchQuery.value = it
+        }
+    }
 
+//    override fun onQueryTextSubmit(query: String?): Boolean {
+//        query?.let {
+//            search(query)
+//        }
+//        Log.i("MainFragment", "onQueryTextChange")
+//        return true
+//    }
+//
+//    override fun onQueryTextChange(newText: String?): Boolean {
+//        newText?.let {
+//            search(newText)
+//        }
+//        Log.i("MainFragment", "onQueryTextChange")
+//        return true
+//    }
+//    fun search(query: String?) {
+//        viewModel.searchDatabase(query).observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                wallpaperGridAdapter.submitList(it)
+//
+//            }
+//        })
+//        Log.i("MainFragment", "SearchQuery called")
+//    }
 }

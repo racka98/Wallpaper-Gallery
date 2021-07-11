@@ -18,4 +18,10 @@ interface WallpaperDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllWallpapers(vararg wallpapers: WallpaperDatabase)
 
+    //Search from the database
+    @Query(
+        "SELECT * FROM wallpapers_collection WHERE collections LIKE :searchQuery OR author LIKE :searchQuery OR name LIKE :searchQuery"
+    )
+    fun searchDatabase(searchQuery: String): LiveData<List<WallpaperDatabase>>
+
 }

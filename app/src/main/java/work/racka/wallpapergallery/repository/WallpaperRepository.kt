@@ -28,4 +28,11 @@ class WallpaperRepository(val database: WallpapersDatabase) {
             database.wallpaperDao.insertAllWallpapers(*wallpaperList.asDatabaseModel())
         }
     }
+
+    fun searchDatabase(query: String): LiveData<List<Wallpaper>> {
+        return Transformations
+            .map(database.wallpaperDao.searchDatabase(query)) {
+                it.asDomainModel()
+            }
+    }
 }

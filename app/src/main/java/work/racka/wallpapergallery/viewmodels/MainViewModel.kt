@@ -2,10 +2,7 @@ package work.racka.wallpapergallery.viewmodels
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import work.racka.wallpapergallery.database.WallpapersDatabase
 import work.racka.wallpapergallery.domain.Wallpaper
@@ -36,8 +33,17 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     //Retrieve the repository to get the list of wallpapers
     private val wallpaperRepository = WallpaperRepository(database)
 
+    //Query LiveData to be set in the fragment and update the query
+    val searchQuery = MutableLiveData("")
+
+    //
+    private val updatedWallpaperList = searchQuery.switchMap {
+        val sqlQuery = "%$it%"
+        wallpaperRepository.searchDatabase(sqlQuery)
+    }
+
     //Get videos Live data from the repository and assign to a wallpaper list
-    val wallpaperList = wallpaperRepository.wallpapers
+    val wallpaperList = updatedWallpaperList
 
     init {
         refreshWallpapersDatabase()
