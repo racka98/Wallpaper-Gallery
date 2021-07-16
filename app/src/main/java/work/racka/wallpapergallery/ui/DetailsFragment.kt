@@ -29,12 +29,14 @@ class DetailsFragment : Fragment() {
             // only the bottom, left, and right dimensions, but apply whichever insets are
             // appropriate to your layout. You can also update the view padding
             // if that's more appropriate.
-            view.updatePadding(bottom= insets.bottom)
+            view.updatePadding(bottom = insets.bottom)
 
             // Return CONSUMED if you don't want want the window insets to keep being
             // passed down to descendant views.
             WindowInsetsCompat.CONSUMED
         }
+
+        //val controller = WindowInsetsControllerCompat(, binding.root)
 
         //set the lifecycle owner to this fragment
         binding.lifecycleOwner = this

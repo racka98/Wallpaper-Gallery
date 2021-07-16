@@ -107,6 +107,14 @@ class MainFragment : Fragment() {
             // passed down to descendant views.
             WindowInsetsCompat.CONSUMED
         }
+        ViewCompat.setOnApplyWindowInsetsListener(binding.wallpaperGrid) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                updateMargins(bottom = insets.bottom)
+            }
+
+            WindowInsetsCompat.CONSUMED
+        }
 
         //setHasOptionsMenu(true)
         return binding.root
