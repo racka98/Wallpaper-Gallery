@@ -45,6 +45,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     //Get videos Live data from the repository and assign to a wallpaper list
     val wallpaperList = updatedWallpaperList
 
+    val categories = wallpaperRepository.wallpapers
+
     init {
         refreshWallpapersDatabase()
     }

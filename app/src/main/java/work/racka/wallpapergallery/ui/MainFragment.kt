@@ -13,8 +13,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
+import work.racka.wallpapergallery.R
 import work.racka.wallpapergallery.databinding.MainFragmentBinding
+import work.racka.wallpapergallery.domain.Wallpaper
+import work.racka.wallpapergallery.util.getCombinedCollection
 import work.racka.wallpapergallery.util.onQueryTextChanged
 import work.racka.wallpapergallery.viewmodels.MainViewModel
 import work.racka.wallpapergallery.viewmodels.MainViewModelFactory
@@ -87,8 +91,43 @@ class MainFragment : Fragment() {
             }
         })
 
+        //Observe the categoryList and make the Chips
+        viewModel.categories.observe(viewLifecycleOwner, object : Observer<List<Wallpaper>> {
+            override fun onChanged(t: List<Wallpaper>?) {
+                t ?: return
+                //Make a new chip for each item
+                val chipGroup = binding.categoryChipGroup
+                val layoutInflater = LayoutInflater.from(chipGroup.context)
+                val category = t.getCombinedCollection("|")
+                Log.d("MainFrag", "Collections size: ${category.size}")
+
+                val children = category.map { collection ->
+                    val chip = layoutInflater.inflate(R.layout.category, chipGroup, false) as Chip
+                    chip.text = collection
+                    chip.tag = collection
+                    chip.setOnCheckedChangeListener { buttonView, isChecked ->
+                        if (isChecked) {
+                            viewModel.searchQuery.value = buttonView.tag as String
+                            //chip.isChecked = true
+                        } else {
+                            viewModel.searchQuery.value = ""
+                        }
+                    }
+                    chip
+                }
+                //Remove any chips already in the chip group
+                chipGroup.removeAllViews()
+                //Add new children to the ChipGroup
+                for (chip in children) {
+                    chipGroup.addView(chip)
+                }
+            }
+
+        })
+
         binding.searchView.onQueryTextChanged {
             Log.i("MainFragment", "onQueryTextChanged accessed")
+            binding.categoryChipGroup.clearCheck()
             viewModel.searchQuery.value = it
         }
 

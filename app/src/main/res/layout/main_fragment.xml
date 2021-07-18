@@ -33,19 +33,21 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/appBarItems"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_margin="5dp"
-                    android:elevation="2dp"
-                    android:background="@drawable/appbar_background_border"
+                    android:layout_height="wrap_content"
                     app:layout_scrollFlags="scroll|enterAlways|snap">
 
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/search_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/appbar_background_border"
+                        android:elevation="2dp"
                         app:iconifiedByDefault="false"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:queryBackground="@null"
-                        app:queryHint="Search Wallpapers" />
+                        app:queryHint="Search Wallpapers"
+                        tools:layout_editor_absoluteX="5dp" />
 
                     <ImageView
                         android:id="@+id/settings_icon"
@@ -53,10 +55,28 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:src="@drawable/outline_settings_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/search_view"
+                        app:layout_constraintEnd_toEndOf="@+id/search_view"
+                        app:layout_constraintTop_toTopOf="@+id/search_view" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/chips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/search_view">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/category_chip_group"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            app:singleLine="true"
+                            app:singleSelection="true" />
+                    </HorizontalScrollView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

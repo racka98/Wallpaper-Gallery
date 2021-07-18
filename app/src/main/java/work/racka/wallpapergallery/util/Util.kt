@@ -17,6 +17,8 @@
 
 package work.racka.wallpapergallery.util
 
+import work.racka.wallpapergallery.domain.Wallpaper
+
 private val PUNCTUATION = listOf(", ", "; ", ": ", " ")
 
 /**
@@ -47,4 +49,21 @@ fun String.smartTruncate(length: Int): String {
         builder.append("...")
     }
     return builder.toString()
+}
+
+/**
+ * A function that takes a collection of Wallpapers then returns a set collections/categories from wallpapers
+ * It takes a separator and splits all the items with that separator, adding them to the set
+ * Since it is a set it means that there's no duplicates
+ * This is useful when creating a ChipGroup from a database and don't want duplicate chips
+ * You can modify the function to return other types as needed
+ */
+fun Collection<Wallpaper>.getCombinedCollection(separator: String): Set<String> {
+    val collection = mutableSetOf<String>()
+    this.forEach {
+        if (it.collections.contains(separator)) {
+            collection.addAll(it.collections.split(separator))
+        } else collection.add(it.collections)
+    }
+    return collection
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ChipTheme"
+    android:layout_width="wrap_content"
+    android:layout_height="60dp"
+    app:chipBackgroundColor="@color/chip_color"
+    app:chipCornerRadius="10dp"
+    tools:checked="true"
+    tools:text="@string/app_name">
+
+</com.google.android.material.chip.Chip>
