@@ -14,6 +14,10 @@ interface WallpaperDao {
     @Query("SELECT * FROM wallpapers_collection")
     fun getAllWallpapers(): LiveData<List<WallpaperDatabase>>
 
+    // Get wallpapers as a list for use in the widget
+    @Query("SELECT * FROM wallpapers_collection")
+    fun getAllWallpapersForWidget(): List<WallpaperDatabase>
+
     //Insert network data into the database upon update
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllWallpapers(vararg wallpapers: WallpaperDatabase)

@@ -25,12 +25,12 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/details_wallpaper_image"
+                android:id="@+id/wallpaper_image"
                 android:layout_width="match_parent"
                 android:layout_height="640dp"
                 android:contentDescription="@string/wallpaper_image_description"
                 android:scaleType="centerCrop"
-                android:transitionName="wallpaperImage"
+                android:transitionName="@{viewModel.selectedWallpaper.url}"
                 app:imageUrl="@{viewModel.selectedWallpaper.url}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 

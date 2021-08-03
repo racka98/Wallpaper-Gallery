@@ -12,6 +12,7 @@ import androidx.core.view.updateMargins
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
@@ -20,6 +21,7 @@ import work.racka.wallpapergallery.databinding.MainFragmentBinding
 import work.racka.wallpapergallery.domain.Wallpaper
 import work.racka.wallpapergallery.util.getCombinedCollection
 import work.racka.wallpapergallery.util.onQueryTextChanged
+import work.racka.wallpapergallery.util.waitForTransition
 import work.racka.wallpapergallery.viewmodels.MainViewModel
 import work.racka.wallpapergallery.viewmodels.MainViewModelFactory
 import work.racka.wallpapergallery.viewmodels.WallpaperApiStatus
@@ -53,20 +55,25 @@ class MainFragment : Fragment() {
         //Add click listener to this adapter
         //binding.wallpaperGrid.adapter = WallpaperGridAdapter()
         binding.wallpaperGrid.adapter = WallpaperGridAdapter(
-            WallpaperGridAdapter.OnClickListener { wallpaperProperty ->
+            WallpaperGridAdapter.OnClickListener { wallpaperProperty, image ->
                 viewModel.displayWallpaperDetails(wallpaperProperty)
+                val extras = FragmentNavigatorExtras(image to image.transitionName)
+
+                //Observe navigateToDetailsFragment from MainViewModel to trigger navigation
+                viewModel.navigateToDetailsFragment.observe(viewLifecycleOwner) { wallpaperProperty ->
+                    wallpaperProperty?.let {
+                        this.findNavController().navigate(
+                            MainFragmentDirections.actionMainFragmentToDetailsFragment(it),
+                            extras
+                        )
+                        viewModel.displayWallpaperDetailsCompleted()
+                    }
+                }
             }
         )
 
-        //Observe navigateToDetailsFragment from MainViewModel to trigger navigation
-        viewModel.navigateToDetailsFragment.observe(viewLifecycleOwner) { wallpaperProperty ->
-            wallpaperProperty?.let {
-                this.findNavController().navigate(
-                    MainFragmentDirections.actionMainFragmentToDetailsFragment(it)
-                )
-                viewModel.displayWallpaperDetailsCompleted()
-            }
-        }
+        // Postpone transition animation till the RecyclerView is populated
+        waitForTransition(binding.wallpaperGrid)
 
         //Observe the network call status and show a snackbar for the appropriate status
         viewModel.status.observe(viewLifecycleOwner, Observer { status ->

@@ -17,6 +17,12 @@ class WallpaperRepository(val database: WallpapersDatabase) {
             it.asDomainModel()
         }
 
+    // A collection of wallpapers as a list that will be displayed on a widget
+    fun getWidgetWallsList(): List<Wallpaper> {
+        val wallpaperDatabaseList = database.wallpaperDao.getAllWallpapersForWidget()
+        return wallpaperDatabaseList.asDomainModel()
+    }
+
     /**
      * Refresh wallpapers stored in offline cache
      * Using the IO dispatcher for Disk IO activities

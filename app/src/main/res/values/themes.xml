@@ -20,4 +20,12 @@
     <style name="ChipTheme" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:textColor">?android:textColorSecondary</item>
     </style>
+
+    <style name="Theme.WallpaperGallery.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <item name="appWidgetRadius">8dp</item>
+        <item name="appWidgetPadding">4dp</item>
+        <item name="appWidgetInnerRadius">4dp</item>
+    </style>
+
+    <style name="Theme.WallpaperGallery.AppWidgetContainer" parent="Theme.WallpaperGallery.AppWidgetContainerParent" />
 </resources>

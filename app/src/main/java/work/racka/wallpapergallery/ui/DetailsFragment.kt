@@ -1,6 +1,7 @@
 package work.racka.wallpapergallery.ui
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +49,15 @@ class DetailsFragment : Fragment() {
 
         binding.viewModel = ViewModelProvider(
             this,
-            viewModelFactory).get(DetailsViewModel::class.java)
+            viewModelFactory
+        ).get(DetailsViewModel::class.java)
+
+        // Transition animation
+        val animation = TransitionInflater.from(requireContext()).inflateTransition(
+            android.R.transition.move
+        )
+        sharedElementEnterTransition = animation
+        //sharedElementReturnTransition = animation
 
         //Always return root view
         return binding.root

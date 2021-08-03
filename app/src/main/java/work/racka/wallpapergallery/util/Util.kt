@@ -17,6 +17,9 @@
 
 package work.racka.wallpapergallery.util
 
+import android.view.View
+import androidx.core.view.doOnPreDraw
+import androidx.fragment.app.Fragment
 import work.racka.wallpapergallery.domain.Wallpaper
 
 private val PUNCTUATION = listOf(", ", "; ", ": ", " ")
@@ -66,4 +69,10 @@ fun Collection<Wallpaper>.getCombinedCollection(separator: String): Set<String> 
         } else collection.add(it.collections)
     }
     return collection
+}
+
+
+fun Fragment.waitForTransition(targetView: View) {
+    postponeEnterTransition()
+    targetView.doOnPreDraw { startPostponedEnterTransition() }
 }

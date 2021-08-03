@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Wallpaper Gallery</string>
     <string name="wallpaper_image_description">wallpaper image</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+
+    <string name="transition_image">image %d</string>
 </resources>

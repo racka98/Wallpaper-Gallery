@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:adjustViewBounds="true"
-                android:transitionName="wallpaperImage"
+                android:transitionName="@{wallpaper.url}"
                 android:contentDescription="@string/wallpaper_image_description"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{wallpaper.thumbnail}"
