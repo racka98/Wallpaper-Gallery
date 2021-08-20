@@ -40,6 +40,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
+        android:transitionName="@{wallpaper.url}"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp">
 
@@ -53,7 +54,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:adjustViewBounds="true"
-                android:transitionName="@{wallpaper.url}"
                 android:contentDescription="@string/wallpaper_image_description"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{wallpaper.thumbnail}"

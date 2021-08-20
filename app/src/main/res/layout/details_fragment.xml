@@ -15,7 +15,8 @@
     <ScrollView
         android:id="@+id/details_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:transitionName="@{viewModel.selectedWallpaper.url}">
 
         <LinearLayout
             android:id="@+id/details_container"
@@ -30,7 +31,6 @@
                 android:layout_height="640dp"
                 android:contentDescription="@string/wallpaper_image_description"
                 android:scaleType="centerCrop"
-                android:transitionName="@{viewModel.selectedWallpaper.url}"
                 app:imageUrl="@{viewModel.selectedWallpaper.url}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:elevation="2dp"
+                app:cardBackgroundColor="?colorSurface"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout

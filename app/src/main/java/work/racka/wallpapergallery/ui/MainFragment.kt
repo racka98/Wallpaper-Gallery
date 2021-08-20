@@ -55,9 +55,10 @@ class MainFragment : Fragment() {
         //Add click listener to this adapter
         //binding.wallpaperGrid.adapter = WallpaperGridAdapter()
         binding.wallpaperGrid.adapter = WallpaperGridAdapter(
-            WallpaperGridAdapter.OnClickListener { wallpaperProperty, image ->
+            WallpaperGridAdapter.OnClickListener { wallpaperProperty, materialCardView ->
                 viewModel.displayWallpaperDetails(wallpaperProperty)
-                val extras = FragmentNavigatorExtras(image to image.transitionName)
+                val extras =
+                    FragmentNavigatorExtras(materialCardView to materialCardView.transitionName)
 
                 //Observe navigateToDetailsFragment from MainViewModel to trigger navigation
                 viewModel.navigateToDetailsFragment.observe(viewLifecycleOwner) { wallpaperProperty ->

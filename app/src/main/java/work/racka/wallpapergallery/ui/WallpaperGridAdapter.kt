@@ -2,10 +2,10 @@ package work.racka.wallpapergallery.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import work.racka.wallpapergallery.databinding.WallpaperGroupBinding
 import work.racka.wallpapergallery.domain.Wallpaper
 
@@ -51,12 +51,13 @@ class WallpaperGridAdapter(private val onClickListener: OnClickListener) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val wallpaper = getItem(position)
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(wallpaper, holder.binding.wallpaperImage)
+            onClickListener.onClick(wallpaper, holder.binding.wallpaperGroupRoot)
         }
         holder.bind(wallpaper)
     }
 
-    class OnClickListener(val clickListener: (wallpaper: Wallpaper, image: ImageView) -> Unit) {
-        fun onClick(wallpaper: Wallpaper, image: ImageView) = clickListener(wallpaper, image)
+    class OnClickListener(val clickListener: (wallpaper: Wallpaper, materialCard: MaterialCardView) -> Unit) {
+        fun onClick(wallpaper: Wallpaper, materialCard: MaterialCardView) =
+            clickListener(wallpaper, materialCard)
     }
 }

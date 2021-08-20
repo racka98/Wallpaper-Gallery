@@ -7,7 +7,7 @@
         <item name="colorOnPrimary">@color/black</item>
         <item name="appBarLayoutStyle">@color/dark</item>
         <item name="colorSurface">@color/surface</item>
-        <item name="android:colorBackground">@color/dark2</item>
+        <item name="android:colorBackground">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>

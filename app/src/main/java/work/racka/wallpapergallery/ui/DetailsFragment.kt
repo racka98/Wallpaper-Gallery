@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.transition.MaterialContainerTransform
 import work.racka.wallpapergallery.databinding.DetailsFragmentBinding
 import work.racka.wallpapergallery.viewmodels.DetailsViewModel
 import work.racka.wallpapergallery.viewmodels.DetailsViewModelFactory
@@ -56,7 +57,7 @@ class DetailsFragment : Fragment() {
         val animation = TransitionInflater.from(requireContext()).inflateTransition(
             android.R.transition.move
         )
-        sharedElementEnterTransition = animation
+        sharedElementEnterTransition = MaterialContainerTransform(requireContext(), true)
         //sharedElementReturnTransition = animation
 
         //Always return root view
