@@ -34,7 +34,7 @@ class WallpaperGridAdapter(private val onClickListener: OnClickListener) :
         }
 
         override fun areContentsTheSame(oldItem: Wallpaper, newItem: Wallpaper): Boolean {
-            return oldItem == newItem
+            return oldItem.hashCode() == newItem.hashCode()
         }
 
     }
